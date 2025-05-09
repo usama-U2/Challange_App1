@@ -12,7 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit();
         }
     }
-    echo "<p style='color:red; font-weight:bold;'>Invalid email or password.</p>";
+
+    $error_message = "Invalid email or password.";
 }
 ?>
 
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Login</title>
     <style>
         body {
-            background: linear-gradient(to right, #6a11cb, #2575fc); /* Background gradient */
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
@@ -32,10 +33,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .login-container {
             max-width: 450px;
             margin: 100px auto;
-            background-color: #ffffff; /* White background for the form */
+            background-color: #ffffff;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            max-width: 120px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
@@ -59,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         button {
-            background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             border: none;
             padding: 15px;
@@ -73,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         button:hover {
-            background: linear-gradient(to right, #2575fc, #6a11cb); /* Reverse gradient on hover */
+            background: linear-gradient(to right, #2575fc, #6a11cb);
         }
 
         p {
@@ -95,13 +108,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: red;
             font-weight: bold;
             text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
 <div class="login-container">
-    <h1>Login to Challange</h1>
+    <div class="logo">
+        <img src="logo.png" alt="InstaVibe Logo"> <!-- Replace with your logo path -->
+    </div>
+
+    <h1>Login to Instavibe</h1>
 
     <form method="POST">
         <label>Email:
@@ -118,8 +136,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($email) && !empty($password)) {
-        echo "<p class='error-message'>Invalid email or password.</p>";
+    if (!empty($error_message)) {
+        echo "<p class='error-message'>$error_message</p>";
     }
     ?>
 </div>
